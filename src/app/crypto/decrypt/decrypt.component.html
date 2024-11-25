@@ -1,0 +1,7 @@
+<h2>Decrypt Text</h2>
+<label>Encrypted Text:</label>
+<textarea [(ngModel)]="encrypted"></textarea>
+<label>IV:</label>
+<input [(ngModel)]="iv" />
+<button (click)="decrypt()">Decrypt</button>
+<p>{{ result }}</p>
