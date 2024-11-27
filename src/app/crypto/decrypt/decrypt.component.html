@@ -1,7 +1,48 @@
-<h2>Decrypt Text</h2>
-<label>Encrypted Text:</label>
-<textarea [(ngModel)]="encrypted"></textarea>
-<label>IV:</label>
-<input [(ngModel)]="iv" />
-<button (click)="decrypt()">Decrypt</button>
-<p>{{ result }}</p>
+
+<button (click)="goTologout()">Salir</button>
+<div class="encryption-container">
+    <h2>Desencriptador de textos    </h2>
+  
+    <!-- Encrypted Text input -->
+    <div class="input-container">
+      <label for="encryptedText" class="input-label">Desencriptador:</label>
+      <textarea 
+        id="encryptedText"
+        [(ngModel)]="encrypted" 
+        placeholder="Enter encrypted text"
+        rows="5"
+        cols="30"
+        class="input-textarea">
+      </textarea>
+    </div>
+  
+    <!-- IV input -->
+    <div class="input-container">
+      <label for="ivInput" class="input-label">IV:</label>
+      <input 
+        id="ivInput"
+        [(ngModel)]="iv" 
+        placeholder="Enter IV"
+        class="input-text" />
+    </div>
+  
+    <!-- Decrypt Button -->
+    <div class="button-group">
+        <button
+        (click)="GoToEncrypt()"
+        class="decrypt-button">
+        Encriptar
+      </button>
+      <button 
+        (click)="decrypt()" 
+        class="decrypt-button">
+        Desencriptar
+      </button>
+    </div>
+  
+    <!-- Display result -->
+    <p *ngIf="result2" class="result-text">
+      <strong>Texto desencriptado:</strong> {{ result2 }}
+    </p>
+  </div>
+  

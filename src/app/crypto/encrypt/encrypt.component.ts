@@ -8,16 +8,26 @@ import { CryptoService } from '../../services/crypto.service';
 })
 export class EncryptComponent {
   plaintext = '';
-  result = '';
+  textcifrado = '';
+  Iv = '';
 
   constructor(private cryptoService: CryptoService) {}
 
   encrypt() {
     this.cryptoService.encrypt(this.plaintext).subscribe({
       next: (res) => {
-        this.result = `Encrypted: ${res.encrypted}, IV: ${res.iv}`;
+        this.textcifrado = `${res.encrypted}`;
+        this.Iv = `${res.iv}`;
       },
       error: (err) => console.error('Encryption failed', err),
     });
+  }
+
+  GoToDecrypt() {
+    window.location.href = '/decrypt';
+  }
+  
+  goTologout() {
+    window.location.href = '/login';
   }
 }

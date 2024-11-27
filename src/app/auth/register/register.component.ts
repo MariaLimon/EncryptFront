@@ -10,19 +10,20 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   username = '';
   password = '';
+  errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     this.authService.register(this.username, this.password).subscribe({
       next: () => {
-        console.log('User registered!');
-        this.router.navigate(['/login']); // Redirige al login
+        this.router.navigate(['/login']);
       },
-      error: (err) => console.error('Registration failed', err),
+      error: (err) => {
+        this.errorMessage = err.error?.error || 'Registration failed. Please try again.';
+      },
     });
   }
-  
   goToLogin() {
     this.router.navigate(['/login']);
   }

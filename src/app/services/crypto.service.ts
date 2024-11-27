@@ -15,6 +15,6 @@ export class CryptoService {
   }
 
   decrypt(encrypted: string, iv: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/decrypt`, { encrypted, iv });
+    return this.http.post(`${this.baseUrl}/decrypt`, { encrypted, ivHex: iv });
   }
 }
