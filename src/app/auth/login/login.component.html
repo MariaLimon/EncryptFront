@@ -1,32 +1,48 @@
 <div class="login-container">
-    <div class="login-box">
-      <h2>Login</h2>
-      <form (ngSubmit)="login()">
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input
-            id="username"
-            [(ngModel)]="username"
-            name="username"
-            type="text"
-            required
-            placeholder="Enter your username"
-          />
+  <div class="login-box">
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="input-group">
+        <label for="username">Usuario</label>
+        <input
+          id="username"
+          [(ngModel)]="username"
+          name="username"
+          type="text"
+          pattern="^[a-zA-Z0-9]+$"
+          (keypress)="validateUsername($event)"
+          required
+          placeholder="Enter your username"
+          #usernameInput="ngModel"
+        />
+        <div class="error" *ngIf="usernameInput.invalid && usernameInput.touched">
         </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input
-            id="password"
-            [(ngModel)]="password"
-            name="password"
-            type="password"
-            required
-            placeholder="Enter your password"
-          />
+      </div>
+      <div class="input-group">
+        <label for="password">Contraseña</label>
+        <input
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          type="password"
+          (keypress)="validatePassword($event)"
+          minlength="8"
+          required
+          placeholder="Enter your password"
+          #passwordInput="ngModel"
+        />
+        <div class="error" *ngIf="passwordInput.invalid && passwordInput.touched">
         </div>
-        <button type="submit" class="login-button">Login</button>
-        <a (click)="goToRegister()">aun no tienes cuenta?</a>
-      </form>
-    </div>
+      </div>
+      <button
+        type="submit"
+        class="login-button"
+        [disabled]="loginForm.invalid"
+      >
+        Iniciar Sesión
+      </button>
+      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <a (click)="goToRegister()">¿Aún no tienes cuenta?</a>
+    </form>
   </div>
-  
+</div>

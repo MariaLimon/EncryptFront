@@ -29,7 +29,7 @@ import { authGuard } from '../guard/auth.guard';
     HttpClientModule,
     InputTextareaModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'encrypt', component: EncryptComponent, canActivate: [authGuard] },

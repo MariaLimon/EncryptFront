@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CryptoService } from '../../services/crypto.service';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-encrypt',
   templateUrl: './encrypt.component.html',
@@ -11,7 +11,7 @@ export class EncryptComponent {
   textcifrado = '';
   Iv = '';
 
-  constructor(private cryptoService: CryptoService) {}
+  constructor(private cryptoService: CryptoService,private authService: AuthService) {}
 
   encrypt() {
     this.cryptoService.encrypt(this.plaintext).subscribe({
@@ -28,6 +28,7 @@ export class EncryptComponent {
   }
   
   goTologout() {
-    window.location.href = '/login';
+    this.authService.logout(); // Llama al método logout para eliminar el token
+    window.location.href = '/login'; // Redirige a la página de login
   }
 }

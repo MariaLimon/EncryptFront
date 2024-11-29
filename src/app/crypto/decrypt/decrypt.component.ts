@@ -26,8 +26,6 @@
     GoToEncrypt() {
     window.location.href = '/encrypt';
     }
-    goTologout() {
-      window.location.href = '/login';
-    }
+  
     
   }
