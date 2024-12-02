@@ -1,40 +1,38 @@
-<button (click)="goTologout()">Salir</button>
-<div class="encryption-container">
-  <h2 style="font-family: Arial, Helvetica, sans-serif;">Encriptado de texto(aes-256-cbc)</h2>
+<body>
+    <div class="container">
+      <button class="Logout" (click)="goTologout()">Salir</button>
+      
+      <div class="intro-container">
+        <h2>¿Qué es AES-256-CBC?</h2>
+        <p>AES (Advanced Encryption Standard) es un algoritmo de cifrado simétrico ampliamente utilizado para asegurar la confidencialidad de los datos. En su versión de 256 bits (AES-256), la longitud de la clave es de 256 bits, lo que proporciona un alto nivel de seguridad.</p>
+        <p>En este ejemplo, utilizamos el modo de operación CBC (Cipher Block Chaining), que mejora la seguridad al combinar cada bloque cifrado con el bloque anterior antes de ser procesado. Esto asegura que cifrados idénticos resulten en textos cifrados diferentes, mejorando la resistencia ante ataques.</p>
+        <p>Podrás cifrar y descifrar textos usando AES-256-CBC en esta aplicación.</p>
+      </div>
 
-  <!-- Input field with accessibility and styling -->
-  <div class="card flex justify-content-center input-container">
-    <textarea
-      [(ngModel)]="plaintext"
-      placeholder=" Introducce texto para encriptar"
-      rows="5"
-      cols="30"
-      pInputTextarea
-      [autoResize]="false"
-      class="input-textarea">
-    </textarea>
-  </div>
+      <div class="encryption-container">
+        <h2>Encriptado de texto (AES-256-CBC)</h2>
 
-  <!-- Buttons with styling -->
-  <div class="button-group">
-    <button 
-      (click)="encrypt()" 
-      [disabled]="!plaintext || plaintext.trim() === ''" 
-      class="encrypt-button"
-      aria-label="Encrypt text">
-      Encriptar
-    </button>
-    <button
-      (click)="GoToDecrypt()"
-      class="decrypt-button">
-      Desencriptar
-    </button>
-  </div>
+        <!-- Input field with accessibility and styling -->
+        <div class="card flex justify-content-center input-container">
+          <textarea [(ngModel)]="plaintext" placeholder="Introduzca texto para encriptar" rows="5" cols="30" pInputTextarea [autoResize]="false" class="input-textarea"></textarea>
+        </div>
 
-  <!-- Display result -->
-  <p *ngIf="textcifrado" class="result-text">
-    <strong>Texto:</strong> {{ textcifrado }}
-    <br>
-    <strong>IV:</strong> {{ Iv }} 
-  </p>
-</div>
+        <!-- Buttons with styling -->
+        <div class="button-group">
+          <button (click)="encrypt()" [disabled]="!plaintext || plaintext.trim() === ''" class="encrypt-button" aria-label="Encrypt text">
+            Encriptar
+          </button>
+          <button (click)="GoToDecrypt()" class="decrypt-button">
+            Desencriptar
+          </button>
+        </div>
+
+        <!-- Display result -->
+        <p *ngIf="textcifrado" class="result-text">
+          <strong>Texto:</strong> {{ textcifrado }}
+          <br>
+          <strong>IV:</strong> {{ Iv }}
+        </p>
+      </div>
+    </div>
+  </body>

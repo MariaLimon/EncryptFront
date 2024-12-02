@@ -1,9 +1,8 @@
 <div class="login-container">
   <div class="login-box">
-    <h2>Iniciar Sesión</h2>
+    <h2>Acceso al Sistema</h2>
     <form (ngSubmit)="login()" #loginForm="ngForm">
       <div class="input-group">
-        <label for="username">Usuario</label>
         <input
           id="username"
           [(ngModel)]="username"
@@ -12,28 +11,38 @@
           pattern="^[a-zA-Z0-9]+$"
           (keypress)="validateUsername($event)"
           required
-          placeholder="Enter your username"
+          placeholder="Identificador de Usuario"
           #usernameInput="ngModel"
+          [ngClass]="{'input-error': usernameInput.invalid && usernameInput.touched}"
         />
-        <div class="error" *ngIf="usernameInput.invalid && usernameInput.touched">
+        <div class="error-message" *ngIf="usernameInput.invalid && usernameInput.touched">
+          <span *ngIf="usernameInput.errors?.['required']">ID_USUARIO_REQUERIDO</span>
+          <span *ngIf="usernameInput.errors?.['pattern']">SECUENCIA_CARACTERES_INVALIDA</span>
         </div>
       </div>
+
       <div class="input-group">
-        <label for="password">Contraseña</label>
         <input
           id="password"
           [(ngModel)]="password"
           name="password"
           type="password"
           (keypress)="validatePassword($event)"
+          maxlength="10"
           minlength="8"
           required
-          placeholder="Enter your password"
+          placeholder="Clave de Acceso"
           #passwordInput="ngModel"
+          [ngClass]="{'input-error': passwordInput.invalid && passwordInput.touched}"
         />
-        <div class="error" *ngIf="passwordInput.invalid && passwordInput.touched">
+        <div class="error-message" *ngIf="passwordInput.invalid && passwordInput.touched">
+          <span *ngIf="passwordInput.errors?.['required']">CLAVE_REQUERIDA</span>
+          <span *ngIf="passwordInput.errors?.['minlength'] || passwordInput.errors?.['maxlength']">
+            LONGITUD_CLAVE_INVALIDA::8-10
+          </span>
         </div>
       </div>
+
       <button
         type="submit"
         class="login-button"
@@ -41,8 +50,9 @@
       >
         Iniciar Sesión
       </button>
-      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
-      <a (click)="goToRegister()">¿Aún no tienes cuenta?</a>
+
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+      <a (click)="goToRegister()">[ Solicitar Nueva Autorización ]</a>
     </form>
   </div>
 </div>
