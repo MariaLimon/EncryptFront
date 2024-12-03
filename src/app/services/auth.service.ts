@@ -8,7 +8,7 @@ import { Router } from '@angular/router'; // Importa Router para redirigir
 })
 export class AuthService {
   private isLogged = false; // Estado interno de autenticación
-  private baseUrl = 'https://encryptback.onrender.com/api/auth'; // Base URL del backend
+  private baseUrl = 'https://encryptback.vercel.app/api/auth'; // Base URL del backend
 
   constructor(private http: HttpClient,private router: Router) {}
 
