@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     const authService = inject(AuthService); // Inyecta el servicio correctamente
     const isLoggedIn = authService.isLoggedIn(); // Llama al método de instancia
     if (!isLoggedIn) {
-        alert("No tienes permisos, logeate no seas puto");
+        alert("No tienes permisos, logeate");
         router.navigate(['/login']); // Redirige si no está autenticado
         return false;
     }
